@@ -59,74 +59,86 @@
 </script>
 
 {#if $currentPage === 1}
-<div class="min-h-screen bg-gray-700 flex items-center justify-center">
-    <div class="bg-gray-800 border-2 border-gray-900 shadow-2xl rounded-lg">
-        <div class="p-6 text-gray-800 grid grid-cols-4 gap-5 text-xl">
-            <div class="col-span-4 text-center text-white">Your Loved One's Custom Link</div>
-            <div class="col-span-4 text-center text-white">Tributestream.com/celebration_of_life_for_{urlFriendlyText}</div>
-            <input type="text" class="col-span-4 bg-gray-800 border-2 border-gray-900 shadow-2xl rounded-lg text-white" bind:value={formData.lovedOnesName} on:input={convertText} placeholder="Loved One's Name" />
-            <input type="text" class="col-span-4" bind:value={formData.livestreamDate} placeholder="Livestream Date" />
-            <input type="text" class="col-span-4" bind:value={formData.yourName} placeholder="Your Name" />
-            <input type="text" class="col-span-4" bind:value={formData.email} placeholder="Email" />
-            <input type="text" class="col-span-4" bind:value={formData.phoneNumber} placeholder="Phone Number" />
-            <div class="col-span-4 text-center text-white">Are we livestreaming at the funeral home?</div>
-            <button class="col-span-2 bg-gray-500 hover:bg-gray-400 rounded-full p-5 text-white" on:click={() => livestreamAtFuneralHome = true}>Yes</button>
-            <button class="col-span-2 bg-gray-500 hover:bg-gray-400 rounded-full p-5 text-white" on:click={() => livestreamAtFuneralHome = false}>No</button>
-            <button class="col-span-1 bg-gray-500 hover:bg-gray-400 rounded-full p-5 text-white" on:click={() => currentPage.set(2)}>Next</button>
-        </div>          
+<div>
+    <div>
+        <div>
+            <form>
+                <p>Your Loved One's Custom Link</p>
+                <p>Tributestream.com/celebration_of_life_for_{urlFriendlyText}</p>
+            </form>
+
+            <div>
+                <p>Loved One's Name</p>
+                <input type="text" bind:value={formData.lovedOnesName} on:input={convertText} placeholder="Loved One's Name" />
+                <p>Livestream Date</p>
+                <input type="text" bind:value={formData.livestreamDate} placeholder="Livestream Date" />
+                <p>Your Name</p>
+                <input type="text" bind:value={formData.yourName} placeholder="Your Name" />
+                <p>Email</p>
+                <input type="text" bind:value={formData.email} placeholder="Email" />
+                <p>Phone Number</p>
+                <input type="text" bind:value={formData.phoneNumber} placeholder="Phone Number" />
+                <p>Are we livestreaming at the funeral home?</p>
+                <button on:click={() => livestreamAtFuneralHome = true}>Yes</button>
+                <button on:click={() => livestreamAtFuneralHome = false}>No</button>
+                <button on:click={() => currentPage.set(2)}>Next</button>
+            </div>          
+        </div>
     </div>
 </div>
 {:else}
-<div class="min-h-screen bg-gray-700 flex items-center justify-center">
-    <div class="bg-gray-800 border-2 border-gray-900 shadow-2xl rounded-lg grid grid-cols-4 gap-2">
-        <div class="col-span-2 bg-gray-500 rounded-full p-5 text-white text-center">
-            {#if livestreamAtFuneralHome !== false}
-                <button class="bg-gray-500 hover:bg-gray-400 rounded-full p-5 text-white" on:click={() => selectPackage('Solo')}>Solo</button>
-            {/if}
-            <button class="bg-gray-500 hover:bg-gray-400 rounded-full p-5 text-white" on:click={() => selectPackage('Anywhere')}>Anywhere</button>
-            <button class="bg-gray-500 hover:bg-gray-400 rounded-full p-5 text-white" on:click={() => selectPackage('Legacy')}>Legacy</button>
-            <label class="block">
+<div>
+    <div>
+        <div>
+            <div>
+                {#if livestreamAtFuneralHome !== false}
+                    <button on:click={() => selectPackage('Solo')}>Solo</button>
+                {/if}
+                <button on:click={() => selectPackage('Anywhere')}>Anywhere</button>
+                <button on:click={() => selectPackage('Legacy')}>Legacy</button>
+            </div>
+            <label>
                 Livestream Duration: {livestreamDuration} hours
-                <input type="range" min="1" max="8" bind:value={livestreamDuration} class="w-full">
+                <input type="range" min="1" max="8" bind:value={livestreamDuration}>
             </label>
-            <label class="block">
+            <label>
                 <input type="checkbox" bind:checked={additionalLocations.secondAddress}>
                 Second address?
             </label>
             {#if additionalLocations.secondAddress}
-                <input type="text" bind:value={formData.secondAddress} placeholder="Enter second address" class="w-full"/>
+                <input type="text" bind:value={formData.secondAddress} placeholder="Enter second address" />
             {/if}
-            <label class="block">
+            <label>
                 <input type="checkbox" bind:checked={additionalLocations.thirdAddress}>
                 Third address?
             </label>
             {#if additionalLocations.thirdAddress}
-                <input type="text" bind:value={formData.thirdAddress} placeholder="Enter third address" class="w-full"/>
+                <input type="text" bind:value={formData.thirdAddress} placeholder="Enter third address" />
             {/if}
         </div>
-        <div class="col-span-2 bg-gray-500 rounded-full p-5 text-white text-center">
-            <div class="overflow-x-auto">
-                <table class="min-w-full">
+        <div>
+            <div>
+                <table>
                     <thead>
                         <tr>
-                            <th class="border px-2 text-right">Services</th>
-                            <th class="border px-2 text-right">Price</th>
+                            <th>Services</th>
+                            <th>Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="border px-2 text-right">Base Price</td>
-                            <td class="border px-2 text-right"> ${masterPrice}</td>
+                            <td>Base Price</td>
+                            <td>{masterPrice}</td>
                         </tr>
                         {#each additionalCharges as charge}
                             <tr>
-                                <td class="border px-2 text-right">{charge.item}</td>
-                                <td class="border px-2 text-right">${charge.price}</td>
+                                <td>{charge.item}</td>
+                                <td>{charge.price}</td>
                             </tr>
                         {/each}
                         <tr>
-                            <td class="border px-2 text-right">Total Cost</td>
-                            <td class="border px-2 text-right">${totalCost}</td>
+                            <td>Total Cost</td>
+                            <td>{totalCost}</td>
                         </tr>    
                     </tbody>
                 </table>
