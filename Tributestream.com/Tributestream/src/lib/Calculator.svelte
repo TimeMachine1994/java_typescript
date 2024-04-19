@@ -62,59 +62,43 @@
 <div>
     <div>
         <div>
-            <form>
-                <p>Your Loved One's Custom Link</p>
-                <p>Tributestream.com/celebration_of_life_for_{urlFriendlyText}</p>
-            </form>
-
-            <div>
-                <p>Loved One's Name</p>
-                <input type="text" bind:value={formData.lovedOnesName} on:input={convertText} placeholder="Loved One's Name" />
-                <p>Livestream Date</p>
-                <input type="text" bind:value={formData.livestreamDate} placeholder="Livestream Date" />
-                <p>Your Name</p>
-                <input type="text" bind:value={formData.yourName} placeholder="Your Name" />
-                <p>Email</p>
-                <input type="text" bind:value={formData.email} placeholder="Email" />
-                <p>Phone Number</p>
-                <input type="text" bind:value={formData.phoneNumber} placeholder="Phone Number" />
-                <p>Are we livestreaming at the funeral home?</p>
-                <button on:click={() => livestreamAtFuneralHome = true}>Yes</button>
-                <button on:click={() => livestreamAtFuneralHome = false}>No</button>
-                <button on:click={() => currentPage.set(2)}>Next</button>
-            </div>          
-        </div>
+            <div>Your Loved One's Custom Link</div>
+            <div>Tributestream.com/celebration_of_life_for_{urlFriendlyText}</div>
+            <input type="text" bind:value={formData.lovedOnesName} on:input={convertText} placeholder="Loved One's Name" />
+            <input type="text" bind:value={formData.livestreamDate} placeholder="Livestream Date" />
+            <input type="text" bind:value={formData.yourName} placeholder="Your Name" />
+            <input type="text" bind:value={formData.email} placeholder="Email" />
+            <input type="text" bind:value={formData.phoneNumber} placeholder="Phone Number" />
+            <div>Are we livestreaming at the funeral home?</div>
+            <button on:click={() => livestreamAtFuneralHome = true}>Yes</button>
+            <button on:click={() => livestreamAtFuneralHome = false}>No</button>
+            <button on:click={() => currentPage.set(2)}>Next</button>
+        </div>          
     </div>
 </div>
 {:else}
 <div>
     <div>
         <div>
+            {#if livestreamAtFuneralHome !== false}
+                <button on:click={() => selectPackage('Solo')}>Solo</button>
+            {/if}
+            <button on:click={() => selectPackage('Anywhere')}>Anywhere</button>
+            <button on:click={() => selectPackage('Legacy')}>Legacy</button>
             <div>
-                {#if livestreamAtFuneralHome !== false}
-                    <button on:click={() => selectPackage('Solo')}>Solo</button>
-                {/if}
-                <button on:click={() => selectPackage('Anywhere')}>Anywhere</button>
-                <button on:click={() => selectPackage('Legacy')}>Legacy</button>
-            </div>
-            <label>
                 Livestream Duration: {livestreamDuration} hours
                 <input type="range" min="1" max="8" bind:value={livestreamDuration}>
-            </label>
-            <label>
-                <input type="checkbox" bind:checked={additionalLocations.secondAddress}>
-                Second address?
-            </label>
-            {#if additionalLocations.secondAddress}
-                <input type="text" bind:value={formData.secondAddress} placeholder="Enter second address" />
-            {/if}
-            <label>
-                <input type="checkbox" bind:checked={additionalLocations.thirdAddress}>
-                Third address?
-            </label>
-            {#if additionalLocations.thirdAddress}
-                <input type="text" bind:value={formData.thirdAddress} placeholder="Enter third address" />
-            {/if}
+            </div>
+            <div>
+                <input type="checkbox" bind:checked={additionalLocations.secondAddress}> Second address?
+                {#if additionalLocations.secondAddress}
+                    <input type="text" bind:value={formData.secondAddress} placeholder="Enter second address"/>
+                {/if}
+                <input type="checkbox" bind:checked={additionalLocations.thirdAddress}> Third address?
+                {#if additionalLocations.thirdAddress}
+                    <input type="text" bind:value={formData.thirdAddress} placeholder="Enter third address"/>
+                {/if}
+            </div>
         </div>
         <div>
             <div>
@@ -147,3 +131,28 @@
     </div>
 </div>
 {/if}
+
+<style>
+    div, input, button, label, table, th, td {
+        border: 1px solid black;
+        padding: 10px;
+        margin: 5px;
+    }
+    input[type="range"], input[type="text"], input[type="checkbox"] {
+        width: 100%;
+    }
+    button {
+        background-color: lightgray;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: gray;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        text-align: left;
+    }
+</style>
