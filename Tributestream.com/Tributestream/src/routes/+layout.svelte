@@ -23,6 +23,7 @@
 </script>
 <Header />
 
-   <slot /> <!-- Main page content goes here -->
+<div class="min-h-screen">
+	<slot /> <!-- Main page content goes here -->
+  </div>
   
- 
