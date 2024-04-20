@@ -18,12 +18,18 @@
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { storePopup } from '@skeletonlabs/skeleton';
-	import Header from '$lib/Header.svelte';
+	import { page } from '$app/stores';
+    import Header from '$lib/Header.svelte';
+	
+
+   
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 </script>
-<Header />
+     <Header />
+ 
+
 
 <div class="min-h-screen">
 	<slot /> <!-- Main page content goes here -->
   </div>
-  
+ 

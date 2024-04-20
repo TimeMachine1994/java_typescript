@@ -1,8 +1,20 @@
+<script>
+    import { page } from '$app/stores';
+
+    // Reactive statement to determine if the current route is the homepage
+    $: isHomePage = $page.url.pathname === '/' || $page.url.pathname === '/home';
+    $: zClass = isHomePage ? 'z-50' : 'z-0';
+    $: positionClass = isHomePage ? 'fixed' : 'relative';
+    $: console.log("Current path:", $page.url.pathname, "| Is home page:", isHomePage);
+
+</script>
+
 <!-- Header.svelte -->
-<nav class="fixed top-0 left-0 right-0 z-50 px-4 py-2 mt-4 mb-4 mx-4 bg-white bg-opacity-80 border border-white/80 shadow-lg rounded-xl backdrop-blur-2xl backdrop-saturate-200">
+<nav class= "{zClass} {positionClass} top-0 left-0 right-0 px-4 py-2 mt-4 mb-4 mx-4 bg-white bg-opacity-80 border border-white/80 shadow-lg rounded-xl backdrop-blur-2xl backdrop-saturate-200">
   <div class="container flex items-center justify-between text-blue-gray-900 max-w-7xl mx-auto">
       <a href="/" class="block cursor-pointer py-1.5 font-sans text-base font-medium leading-relaxed text-inherit antialiased">
           Material Tailwind test
+        
       </a>
       <div class="hidden lg:flex flex-row items-center gap-6">
           <!-- List of Navigation Items -->
