@@ -29,7 +29,7 @@
     <div class="card bg-white bg-opacity-80 shadow-lg w-full max-w-4xl p-4">
         
         <!-- Each row with a 33/67 split -->
-        <div class="grid grid-rows-3 gap-4">
+        <div class="grid grid-rows-4 gap-4">
             
             <!-- Row 1 -->
             <div class="grid grid-cols-12 gap-4">
@@ -86,50 +86,30 @@
         </div>
     </div>
 </div>
-
-                    
-
-
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
                 
             </div>
             
             <!-- Row 2 -->
-            <div class="grid grid-cols-12 gap-4">
-                <div class="col-span-4 text-black p-4">Section 2A</div>
-                <div class="col-span-8 text-black p-4">Section 2B</div>
+          
+<!-- Row 2: Section 2B -->
+<div class="grid grid-cols-12 gap-4">
+    <div class="col-span-4 text-black p-4">Section 2A</div>
+    <div class="col-span-8 text-black p-4">
+        <!-- Adding a grid inside Section 2B to organize buttons -->
+        <div class="grid grid-cols-2 gap-4">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Button 1
+            </button>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Button 2
+            </button>
+        </div>
+        <!-- Additional content for Section 2B can continue here -->
+    </div>
+</div>
 
-                
-            </div>
+                 
       
             <!-- Row 3 -->
             <div class="grid grid-cols-12 gap-4">

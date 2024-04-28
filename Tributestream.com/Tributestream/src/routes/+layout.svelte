@@ -23,17 +23,15 @@
 
     storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 </script>
-<div class="max-h-screen overflow-auto">  
-	<Header />
+	
 
 	<!-- Ensure the container expands to fill at least the screen and can scroll if content is longer -->
-	<div class="flex flex-col bg-gray-100">
-		<!-- Main content area with forced scrolling if overflow -->
-		<main class="flex-1 overflow-auto p-4">
+	<div class="flex flex-col bg-gray-100 overflow-auto">
+		<Header /><!-- Main content area with forced scrolling if overflow -->
+		<main class="flex-1 overflow-auto  max-h-screen ">
 			<slot /> <!-- Injected page content will reside here -->
 		</main>
 	</div>
-</div>
 <style>
 div {
 	border: 5px solid red; /* Every div gets a red border */
